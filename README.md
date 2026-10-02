@@ -32,7 +32,8 @@ await strait.updateLink('launch', { longUrl: 'https://yourapp.com/launch-v2' });
 await strait.deleteLink('launch');
 
 // Send a conversion / revenue event (ties revenue to the funnel)
-await strait.sendEvent({ appId: 'YOUR_APP_ID', event: 'purchase', value: 49.99, currency: 'USD' });
+// Authenticated with your secret key — no publishable key needed server-side.
+await strait.sendEvent({ event: 'purchase', value: 49.99, currency: 'USD' });
 ```
 
 Failures throw a `StraitError` with `.status` and the parsed `.body`.

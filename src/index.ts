@@ -4,7 +4,7 @@
  */
 
 export interface StraitClientOptions {
-  /** Your Strait API key (bk_live_… / bk_test_…). */
+  /** Your Strait API key (st_live_… / st_test_…). */
   apiKey: string;
   /** Strait API base, e.g. https://go.yourbrand.com. */
   baseUrl: string;

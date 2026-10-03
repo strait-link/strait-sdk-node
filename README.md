@@ -17,7 +17,7 @@ npm install @strait/sdk-node
 import { StraitClient } from '@strait/sdk-node';
 
 const strait = new StraitClient({
-  apiKey: process.env.BRIDGE_API_KEY!,   // bk_live_… from the dashboard
+  apiKey: process.env.STRAIT_API_KEY!,   // st_live_… from the dashboard
   baseUrl: 'https://go.yourbrand.com',
 });
 

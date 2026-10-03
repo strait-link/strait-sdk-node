@@ -8,7 +8,7 @@ function clientWith(handler: (url: string, init: RequestInit) => Response) {
     return handler(url, init);
   }) as unknown as typeof fetch;
   const client = new StraitClient({
-    apiKey: 'bk_live_test',
+    apiKey: 'st_live_test',
     baseUrl: 'https://go.example.com/',
     fetch: fetchMock,
   });
@@ -31,7 +31,7 @@ describe('StraitClient', () => {
     const link = await client.createLink({ slug: 'promo', longUrl: 'https://x.com' });
     expect(link.id).toBe('lnk_1');
     expect(calls[0]!.url).toBe('https://go.example.com/v1/links');
-    expect((calls[0]!.init.headers as Record<string, string>).Authorization).toBe('Bearer bk_live_test');
+    expect((calls[0]!.init.headers as Record<string, string>).Authorization).toBe('Bearer st_live_test');
     expect(calls[0]!.init.method).toBe('POST');
   });
 

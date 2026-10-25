@@ -156,6 +156,15 @@ app.post('/webhooks/strait', express.raw({ type: 'application/json' }), (req, re
 });
 ```
 
+## Size and speed
+
+Measured 25 Oct 2026 on 0.7.0.
+
+| What | Size or time | How it was measured |
+|---|---|---|
+| npm package | 9.5 KB download, 30 KB unpacked, no dependencies | `npm pack --dry-run` |
+| Start-up | 5.9 ms to load the module (most of it is `node:crypto`, for webhook signatures) + 0.05 ms for `new StraitClient(...)` | fresh Node 26 process on an M-series Mac, median of 25 |
+
 ## Example app
 
 [`examples/node`](examples/node) creates a link, sends a `purchase` event and deletes the link, built against this repo's source (CI builds it on every PR).

@@ -36,6 +36,11 @@ const ARGS: Record<string, unknown[]> = {
   removeDomain: ['go.example.com'],
   listWebhookDeliveries: ['wh-id'],
   redeliverWebhookDelivery: ['dl-id'],
+  getCampaignQrZip: ['diwali_sale'],
+  listTaps: [],
+  listEvents: [],
+  getWorkspace: [],
+  closeWorkspace: [{ tenantId: '00000000-0000-0000-0000-000000000000', confirm: 'hilltop' }],
   recordEvent: [{ event: 'signup' }],
 };
 const PARAM: Record<string, string> = { slug: 'the-slug', id: 'wh-id', hostname: 'go.example.com' };

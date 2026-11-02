@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- New methods for the API's newer operations: `listTaps` and `listEvents` (one page at a time, with `nextCursor`),
+  `getWorkspace` (who a key is), `getCampaignQrZip` (every QR code of a campaign as one ZIP) and `closeWorkspace`
+  (dashboard sessions only; a key gets 403). New types `Tap`, `ConversionEvent`, `Workspace`. `openapi.json`
+  re-pinned (50 operations), so the daily drift check passes again.
+
 ## 0.7.0
 
 - Every secret-key API operation now has a method named after its OpenAPI `operationId`: `batchCreateLinks`,

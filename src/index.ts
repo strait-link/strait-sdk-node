@@ -98,6 +98,61 @@ export interface WebhookDelivery {
 }
 
 /** A binary or text answer (a QR image, an export file). */
+/** One tap on a link (GET /v1/taps), with what happened after it: opens, install, match. */
+export interface Tap {
+  clickId: string;
+  clickedAt: string;
+  linkId: string;
+  slug: string | null;
+  source: string | null;
+  platform: string | null;
+  deviceClass: 'phone' | 'tablet' | 'desktop' | null;
+  osMajor: number | null;
+  inAppBrowser: string | null;
+  channel: string | null;
+  sentTo: string | null;
+  campaign: string | null;
+  variant: number | null;
+  billable: boolean | null;
+  opens: number;
+  openedAt: string | null;
+  openKind: 'direct' | 'deferred' | null;
+  openRoute: string | null;
+  appState: string | null;
+  isNewUser: boolean | null;
+  installedAt: string | null;
+  installMatched: boolean | null;
+  matchMethod: string | null;
+}
+
+/** One conversion event (GET /v1/events), e.g. a signup or purchase sent by your app or server. */
+export interface ConversionEvent {
+  id: string;
+  createdAt: string;
+  name: string;
+  value: number | null;
+  currency: string | null;
+  platform: string | null;
+  linkId: string | null;
+  slug: string | null;
+  clickId: string | null;
+  channel: string | null;
+  campaign: string | null;
+  variant: number | null;
+}
+
+/** Who a key is (GET /v1/workspace). */
+export interface Workspace {
+  name: string;
+  handle: string | null;
+  linkBase: string;
+  linkDomain: string;
+  customDomains: unknown[];
+  plan: string | null;
+  key: Record<string, unknown>;
+  [field: string]: unknown;
+}
+
 export interface FileResponse {
   contentType: string;
   body: Uint8Array;
@@ -325,6 +380,37 @@ export class StraitClient {
 
   async removeDomain(hostname: string): Promise<void> {
     await this.request<null>('DELETE', `/v1/domains/${encodeURIComponent(hostname)}`);
+  }
+
+  /** Every QR code of a campaign's links as one ZIP. */
+  getCampaignQrZip(
+    campaign: string,
+    opts: { format?: 'svg' | 'png'; size?: number; margin?: number; preset?: string; color?: string; background?: string; logo?: boolean; track?: boolean } = {},
+  ): Promise<FileResponse> {
+    return this.file('/v1/qr.zip', { campaign, ...opts });
+  }
+
+  /** Taps, newest first, a page at a time (pass `nextCursor` back as `cursor`). */
+  listTaps(q: { limit?: number; cursor?: string; from?: string; to?: string; link?: string } = {}): Promise<{ taps: Tap[]; nextCursor: string | null }> {
+    return this.request('GET', '/v1/taps', undefined, true, q);
+  }
+
+  /** Conversion events, newest first, a page at a time; `name` keeps one kind (e.g. `purchase`). */
+  listEvents(q: { limit?: number; cursor?: string; from?: string; to?: string; name?: string } = {}): Promise<{ events: ConversionEvent[]; nextCursor: string | null }> {
+    return this.request('GET', '/v1/events', undefined, true, q);
+  }
+
+  /** The workspace this key belongs to: name, link domain, plan. */
+  getWorkspace(): Promise<Workspace> {
+    return this.request('GET', '/v1/workspace');
+  }
+
+  /**
+   * Close a workspace. Only a signed-in owner's dashboard session can (an API key gets 403); `confirm` is the
+   * workspace's link handle. Links go off now and everything is deleted 30 days later.
+   */
+  closeWorkspace(input: { tenantId: string; confirm: string }): Promise<Record<string, unknown>> {
+    return this.request('POST', '/v1/workspace/close', input);
   }
 
   /** Record a conversion/revenue event (authenticated with your secret key). */

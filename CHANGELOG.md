@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.8.0
 
 - New methods for the API's newer operations: `listTaps` and `listEvents` (one page at a time, with `nextCursor`),
   `getWorkspace` (who a key is), `getCampaignQrZip` (every QR code of a campaign as one ZIP) and `closeWorkspace`

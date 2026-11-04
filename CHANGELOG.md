@@ -82,8 +82,8 @@ The first npm release since 0.6.3 (B-SDK-07). Everything below was on main but u
 ## 0.5.0
 
 - **Renamed to Strait** (breaking, clean break). The package is now
-  `@strait/sdk-node`; `StraitClient` / `StraitClientOptions` / `StraitError` are
-  now `StraitClient` / `StraitClientOptions` / `StraitError`. Secret keys use the
+  `@strait/sdk-node`; the exports are now `StraitClient` / `StraitClientOptions` /
+  `StraitError`. Secret keys use the
   `st_live_` / `st_test_` prefix; the env var in the examples is `STRAIT_API_KEY`.
   No aliases for the old names are kept.
 

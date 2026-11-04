@@ -106,6 +106,8 @@ await strait.sendEvent({ event: 'purchase', value: 49.99, currency: 'USD' });
 // Optional: the tap it came from (B15), e.g. forwarded by your app, so the
 // dashboard places the revenue on that tap's channel / A/B variant.
 await strait.sendEvent({ event: 'purchase', value: 49.99, currency: 'USD', clickId });
+// Your order id as eventId: stored once, so a retry never counts twice.
+await strait.sendEvent({ event: 'purchase', value: 49.99, currency: 'USD', eventId: order.id });
 ```
 
 Failures throw a `StraitError` with `.status` and the parsed `.body` (the raw text when the reply

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- README: iPhone install matching is "Opt-in" (was "◐ Beta"), matching "iPhone links: live · install matching: opt-in" on the website and in every SDK.
+
 ## 0.8.1 (7 Nov 2026)
 
 - `SendEventInput` types `eventId` (your order id; the engine stores each eventId once, so a retry

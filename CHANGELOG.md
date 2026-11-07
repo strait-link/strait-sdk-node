@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.1 (7 Nov 2026)
+
+- `SendEventInput` types `eventId` (your order id; the engine stores each eventId once, so a retry
+  never counts twice) and `data` (custom key-values for your `app.event` webhooks). The engine
+  already accepted both; they were just missing from the types (shared-spec B13a, ADR 0004).
+
 ## 0.8.0
 
 - New methods for the API's newer operations: `listTaps` and `listEvents` (one page at a time, with `nextCursor`),

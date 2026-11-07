@@ -173,6 +173,16 @@ export interface SendEventInput {
    * Kept only when it is a tap of your workspace; otherwise ignored.
    */
   clickId?: string;
+  /**
+   * Your id for this conversion, e.g. the order id (1-64 of A-Z a-z 0-9 _ . : -). The engine
+   * stores each eventId once per workspace, so a retry of the same order never counts twice.
+   */
+  eventId?: string;
+  /**
+   * Custom key-values sent to your `app.event` webhooks (not stored): at most 20 keys, values a
+   * string (up to 256 characters), number, boolean or null, 2 KB in all.
+   */
+  data?: Record<string, string | number | boolean | null>;
 }
 
 export class StraitError extends Error {

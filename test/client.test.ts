@@ -98,6 +98,12 @@ describe('StraitClient', () => {
     expect(JSON.parse(calls[0]!.init.body as string).clickId).toBe('3f2a9c1e-7b4d-4e8a-9c0f-1a2b3c4d5e6f');
   });
 
+  it('sendEvent passes eventId (your order id, stored once) and data through (B13a)', async () => {
+    const { client, calls } = clientWith(() => json({ ok: true, clickId: null }, 202));
+    await client.sendEvent({ event: 'purchase', value: 9.99, currency: 'USD', eventId: 'ord_1001', data: { plan: 'pro', seats: 3 } });
+    expect(JSON.parse(calls[0]!.init.body as string)).toMatchObject({ eventId: 'ord_1001', data: { plan: 'pro', seats: 3 } });
+  });
+
   it('throws StraitError with status + parsed body on failure', async () => {
     const { client } = clientWith(() => json({ error: 'slug already exists' }, 409));
     await expect(client.createLink({ slug: 'dup', longUrl: 'https://x.com' })).rejects.toMatchObject({

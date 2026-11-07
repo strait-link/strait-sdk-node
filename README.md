@@ -62,7 +62,7 @@ STRAIT_API_KEY=st_live_… node quickstart.mjs
 |---|---|---|
 | Create, list, update and delete links | ◐ Beta | `StraitClient`, with your tenant API key. |
 | Conversion events from your backend (`sendEvent`) | ◐ Beta | Pass the `clickId` from the app to tie an event to its tap. |
-| iPhone install matching | Opt-in | iPhone links: live · install matching: opt-in. Off until you choose it. Happens in your app (the mobile SDKs), not on the server. Your choice in Dashboard → Settings → iPhone installs: device matching, paste handoff, both or neither, read from Strait at runtime. Device matching is off by default. iPhone matches are labelled Estimated until measured. |
+| iPhone install matching | Opt-in | Off until you choose it. Happens in your app (the mobile SDKs), not on the server. Your choice in Dashboard → Settings → iPhone installs: device matching, paste handoff, both or neither, read from Strait at runtime. Device matching is off by default. iPhone matches are labelled Estimated until measured. |
 | Published on npm | ● Live | `npm install @straitlink/node` |
 
 ● Live · ◐ Beta · ○ Planned · – Not yet · Opt-in: off until you switch it on. The same words as the [platform status](https://straitlink.in/platform-status/) page.

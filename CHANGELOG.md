@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.8.2 (8 Nov 2026)
 
 - README: iPhone install matching is "Opt-in" (was "◐ Beta"), matching "iPhone links: live · install matching: opt-in" on the website and in every SDK.
 

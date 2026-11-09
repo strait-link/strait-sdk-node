@@ -3,7 +3,7 @@ name: OpenAPI drift
 # this run (and test/openapi-coverage.test.ts then names the missing method once the pin is updated).
 on:
   schedule:
-    - cron: '30 3 * * *'
+    - cron: '23 3 * * *'   # odd minute: GitHub drops/delays :00 and :30 runs (strait ops/run-1109). Read-only, safe to repeat
   workflow_dispatch:
 permissions:
   contents: read
